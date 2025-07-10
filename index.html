@@ -31,9 +31,11 @@
         </section>
 
         <section id="profile">
-            <h2 style="margin-bottom: 40px; display: flex; flex-direction: column; align-items: center;" class="glass-box">My Profile</h2>
+            <h2 style="margin-bottom: 40px; display: flex; flex-direction: column; align-items: center;"
+                class="glass-box">My Profile</h2>
             <div class="profile-content fade-in">
-                <img src="imgs/darren.jpeg" alt="Profile Picture" class="profile-img fade-in glass-box" style="scale: 0.8;">
+                <img src="imgs/darren.jpeg" alt="Profile Picture" class="profile-img fade-in glass-box"
+                    style="scale: 0.8;">
                 <div class="profile-text fade-in glass-box">
                     <h3>Hello! I'm Darren.</h3>
                     <p>
@@ -55,7 +57,8 @@
         </section>
 
         <section id="achievements">
-            <h2 style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px" class="glass-box">My Achievements
+            <h2 style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px"
+                class="glass-box">My Achievements
             </h2>
             <div class="profile-content fade-in">
                 <img id="achievement-pic" src="imgs/nlvl.png" class="profile-img fade-in glass-box">
@@ -144,14 +147,16 @@
 
         <section id="skillset">
             <h2 style="text-align: center; margin-bottom: 20px;" class="glass-box">My Skillset</h2>
-            <div style="display: flex; justify-content: center; align-items: center;" class="radar-container fade-in glass-box">
+            <div style="display: flex; justify-content: center; align-items: center;"
+                class="radar-container fade-in glass-box">
                 <canvas id="skillsRadar"></canvas>
             </div>
         </section>
 
 
         <section id="projects">
-            <h2 style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px" class="glass-box">My Projects</h2>
+            <h2 style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px"
+                class="glass-box">My Projects</h2>
             <div class="projects">
                 <div class="project-card fade-in" style="background-image: url('imgs/hsr-1.png');" data-id="0">
                     <div class="overlay">
@@ -229,6 +234,8 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                    } else {
+                        entry.target.classList.remove('visible');
                     }
                 });
             }, {
@@ -237,7 +244,7 @@
 
             fadeEls.forEach(el => observer.observe(el));
 
-
+            
             const messages = [
                 "Hi, I'm Darren – IT Student & Developer",
                 "I build websites and software with style.",
@@ -399,17 +406,27 @@
 
             // Close modal on X
             closeModal.onclick = () => {
-                modal.style.display = 'none';
+                const content = document.querySelector('.modal-content');
+                content.style.animation = 'fadeOut 0.3s ease-in-out forwards';
+
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    content.style.animation = 'fadeIn 0.3s ease-in-out forwards'; // Reset for next time
+                }, 300); // match fadeOut duration
             };
 
-            // Close modal when clicking outside
+            // Optional: also apply same animation if clicking outside modal
             window.onclick = (e) => {
                 if (e.target === modal) {
-                    modal.style.display = 'none';
+                    const content = document.querySelector('.modal-content');
+                    content.style.animation = 'fadeOut 0.3s ease-in-out forwards';
+
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        content.style.animation = 'fadeIn 0.3s ease-in-out forwards';
+                    }, 300);
                 }
             };
-
-
         </script>
     </div>
 </body>
